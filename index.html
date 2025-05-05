@@ -38,7 +38,11 @@
             var shuffledDeck = [];
 
             function shuffle() {
-                window.alert(deck);
+                for (var i = 0; i < 52; i++) {
+                    var randomInteger = Math.floor(Math.random() * deck.length);
+                    shuffledDeck.push(deck[randomInteger]);
+                }
+                window.alert(shuffledDeck);
             }
 
 

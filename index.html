@@ -10,12 +10,24 @@
                 background-color: darkgreen;
                 margin-left: auto;
                 margin-right: auto;
+                position: relative;
+                padding: 4px;
+            }
+            img{
+                width: 55px;
+                height: 85px;
+                padding-left: 4.5px;
+            }
+            button{
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
             }
         </style>
     </head>
 
     <body>
-        <main>
+        <main id = "myTable">
             <button onclick="shuffle()"> SHUFFLE </button>
         </main>
         <script>
@@ -41,11 +53,21 @@
                 for (var i = 0; i < 52; i++) {
                     var randomInteger = Math.floor(Math.random() * deck.length);
                     shuffledDeck.push(deck[randomInteger]);
+                    deck.splice(randomInteger, 1);
                 }
                 window.alert(shuffledDeck);
+                deal();
             }
 
-
+            function deal() {
+                for(var i = 0; i < 52; i++) {
+                    var myImage = new Image();
+                     myImage.src = shuffledDeck[0];
+                    var table = document.getElementById("myTable");
+                    table.appendChild(myImage);
+                    shuffledDeck.splice(0, 1);
+                }
+            }
         </script>
     </body>
 </html>

@@ -18,9 +18,14 @@
                 height: 85px;
                 padding-left: 4.5px;
             }
-            button{
+            button.shuffle{
                 position: absolute;
                 bottom: 20px;
+                right: 20px;
+            }
+            button.refresh{
+                position: absolute;
+                bottom: 40px;
                 right: 20px;
             }
         </style>
@@ -28,7 +33,8 @@
 
     <body>
         <main id = "myTable">
-            <button onclick="shuffle()"> SHUFFLE </button>
+            <button class="shuffle" onclick="shuffle()"> SHUFFLE </button>
+            <button class="refresh" onclick="shuffle()"> REFRESH </button>
         </main>
         <script>
             var deck = [
@@ -55,7 +61,6 @@
                     shuffledDeck.push(deck[randomInteger]);
                     deck.splice(randomInteger, 1);
                 }
-                window.alert(shuffledDeck);
                 deal();
             }
 

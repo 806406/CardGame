@@ -34,9 +34,11 @@
     <body>
         <main id = "myTable">
             <button class="shuffle" onclick="shuffle()"> SHUFFLE </button>
-            <button class="refresh" onclick="shuffle()"> REFRESH </button>
+            <button class="refresh" onclick="refresh()"> REFRESH </button>
         </main>
         <script>
+            var alreadyDelt = false;
+
             var deck = [
                 "images/ace_of_spades.png", "images/ace_of_clubs.png", "images/ace_of_diamonds.png", "images/ace_of_hearts.png",
                 "images/king_of_spades.png", "images/king_of_clubs.png", "images/king_of_diamonds.png", "images/king_of_hearts.png",
@@ -64,13 +66,23 @@
                 deal();
             }
 
+            function refresh() {
+                alreadyDelt = false;
+                var table = document.getElementById("myTable");
+                table.innerHTML = '<button class="shuffle" onclick="shuffle()"> SHUFFLE </button> <button class="refresh" onclick="refresh()"> REFRESH </button>';
+            }
+
             function deal() {
+                if (alreadyDelt == true) {return;}
+
+                alreadyDelt = true;
                 for(var i = 0; i < 52; i++) {
                     var myImage = new Image();
-                     myImage.src = shuffledDeck[0];
+                    myImage.src = shuffledDeck[i];
                     var table = document.getElementById("myTable");
                     table.appendChild(myImage);
-                    shuffledDeck.splice(0, 1);
+                    deck.push(shuffledDeck[i]);
+                    shuffledDeck.splice(i, 1);
                 }
             }
         </script>

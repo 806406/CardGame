@@ -58,6 +58,9 @@
             var shuffledDeck = [];
 
             function shuffle() {
+                if (alreadyDelt == true) {return;}
+
+                alreadyDelt = true;
                 for (var i = 0; i < 52; i++) {
                     var randomInteger = Math.floor(Math.random() * deck.length);
                     shuffledDeck.push(deck[randomInteger]);
@@ -73,16 +76,13 @@
             }
 
             function deal() {
-                if (alreadyDelt == true) {return;}
-
-                alreadyDelt = true;
                 for(var i = 0; i < 52; i++) {
                     var myImage = new Image();
-                    myImage.src = shuffledDeck[i];
+                    myImage.src = shuffledDeck[0];
                     var table = document.getElementById("myTable");
                     table.appendChild(myImage);
-                    deck.push(shuffledDeck[i]);
-                    shuffledDeck.splice(i, 1);
+                    deck.push(shuffledDeck[0]);
+                    shuffledDeck.splice(0, 1);
                 }
             }
         </script>
